@@ -5,6 +5,8 @@
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SignAssembly>false</SignAssembly>
     <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+    <TargetFramework>net8.0</TargetFramework>
+    <IncludeSourceRevisionInInformationalVersion>true</IncludeSourceRevisionInInformationalVersion>
   </PropertyGroup>
 
   <ItemGroup>

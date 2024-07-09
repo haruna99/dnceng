@@ -70,5 +70,12 @@
       "AccessToken": "",
       "MaxParallelRequests": 10
     }
+  },
+  "Kestrel": {
+    "Endpoints": {
+      "MyHttpEndpoint": {
+        "Url": "https://localhost:5001"
+      }
+    }
   }
 }

@@ -1,13 +1,38 @@
 ﻿@page
 @using System.Security.Claims
+@using System.Diagnostics
+@using System.Reflection
+@using System.Linq
 @{
     ViewData["Title"] = "Home page";
+    
+    var process = new Process
+    {
+        StartInfo = new ProcessStartInfo
+        {
+            FileName = "git",
+            Arguments = "rev-parse HEAD",
+            RedirectStandardOutput = true,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        }
+    };
+
+    process.Start();
+    string commitHash = process.StandardOutput.ReadLine();
+    process.WaitForExit();
+
+    var version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+            ?.InformationalVersion ?? "-.-.-.-";
+
+    @* var assembly = Assembly.GetExecutingAssembly();
+    
+    var result = assembly.GetCustomAttributes(string[], false).FirstOrDefault()(assembly)?.InformationalVersion *@
 }
 
 .NET Engineering Status Reporting endpoint
 
 To get/set tokens, go to <a href="@Url.Page("Token")">Tokens</a>
-
 
 <div>
     @if (User.Identity.IsAuthenticated)
@@ -19,9 +44,13 @@ To get/set tokens, go to <a href="@Url.Page("Token")">Tokens</a>
                 <li>@role.Value</li>
             }
         </ul>
+        <div>
+            Version: @version 
+            <p>@commitHash</p>
+        </div>
     }
     else
     {
         <a href="/signin">Sign in</a>
-    }
+    } 
 </div>
