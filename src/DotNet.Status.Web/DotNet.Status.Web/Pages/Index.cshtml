@@ -24,10 +24,6 @@
 
     var version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()
             ?.InformationalVersion ?? "-.-.-.-";
-
-    @* var assembly = Assembly.GetExecutingAssembly();
-    
-    var result = assembly.GetCustomAttributes(string[], false).FirstOrDefault()(assembly)?.InformationalVersion *@
 }
 
 .NET Engineering Status Reporting endpoint
